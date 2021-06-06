@@ -1,0 +1,18 @@
+{
+    "smtp_server": "__SMTP_WITH_TLS_SERVER__",
+    "smtp_port": 587,
+    "mail_username": "__SMTP_USER_NAME__",
+    "mail_password": "__SMTP_USER_PASSWORD__",
+    "mail_from": "__MAIL_FROM__",
+    "mail_bcc": "",
+    "mail_subject": "新型コロナの調査について",
+    "mail_reference": "連絡先: マルバツサンカク",
+    "public_api_url": "https://__PUBLIB_SERVER_NAME__",
+    "server_cert": "",
+    "server_address": "penmm",
+    "server_port": 8083,
+    "log_file": "/opt/penmm/log/penmm.log",
+    "log_stdout": true,
+    "enable_debug": true,
+    "tz": "Asia/Tokyo"
+}

@@ -1,0 +1,13 @@
+{
+    "db_name": "patients",
+    "table_name": "entry",
+    "mongodb_url": "mongodb://penmongo:27017/apitest?retryWrites=true&w=majority",
+    "log_file": "/opt/pendb/log/pendb.log",
+    "log_stdout": true,
+    "enable_debug": true,
+    "tz": "Asia/Tokyo",
+    "server_address": "pendb",
+    "server_port": 8082,
+    "server_cert": ""
+}
+

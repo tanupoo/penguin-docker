@@ -1,0 +1,69 @@
+version: '3.12'
+
+networks:
+
+  pen-local:
+
+services:
+
+  mongodb:
+    image: mongo:4.4.6-bionic
+    hostname: penmongo
+    restart: always
+    networks:
+      - pen-local
+    expose:
+      - "27017"
+    volumes:
+      - ./mongo/db:/data/db
+
+  mongo-express:
+    image: mongo-express:latest
+    hostname: mongo-express
+    restart: always
+    networks:
+      - pen-local
+    ports:
+      - "127.0.0.1:8091:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: "penmongo"
+
+  pendb:
+    image: tanupoo/pendb:a6
+    hostname: pendb
+    restart: always
+    networks:
+      - pen-local
+    expose:
+      - "8082"
+    volumes:
+      - ./pendb/log:/opt/pendb/log
+      - ./pendb/etc:/opt/pendb/etc
+    command: /opt/pendb/etc/pendb.sh
+
+  penmm:
+    image: tanupoo/penmm:a4
+    hostname: penmm
+    restart: always
+    networks:
+      - pen-local
+    expose:
+      - "8083"
+    volumes:
+      - ./penmm/log:/opt/penmm/log
+      - ./penmm/etc:/opt/penmm/etc
+    command: /opt/penmm/etc/penmm.sh
+
+  penfe:
+    image: tanupoo/penfe:a1
+    hostname: penfe
+    restart: always
+    networks:
+      - pen-local
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./penfe/log:/opt/penfe/log
+      - ./penfe/etc:/opt/penfe/etc
+    command: /opt/penfe/etc/penfe.sh
+
