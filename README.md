@@ -3,10 +3,54 @@ proto-pen-docker
 
 ## installation
 
+```
 git clone https://github.com/tanupoo/proto-pen-docker
 cd proto-pen-docker
+cp docker-compose.yml.template docker-compose.yml
+cp pendb/etc/pendb.conf.json.template pendb/etc/pendb.conf.json
+cp penmm/etc/penmm.conf.json.template penmm/etc/penmm.conf.json
+cp penfe/etc/penfe.conf.json.template penfe/etc/penfe.conf.json
+```
 
-## penfe
+特に下記3つのファイルを環境に合わせて編集する。
+
+```
+penmm.conf.json
+penfe.conf.json
+docker-compose.yml
+```
+
+## docker-compose.yml
+
+```
+    :
+    : 省略
+    :
+  penfe:
+    image: tanupoo/penfe:a1
+    hostname: penfe
+    restart: always
+    networks:
+      - pen-local
+    ports:
+      - "__PUBLIC_PORT__:8443"
+    volumes:
+      - ./penfe/log:/opt/penfe/log
+      - ./penfe/etc:/opt/penfe/etc
+    command: /opt/penfe/etc/penfe.sh
+```
+
+__PUBLIC_PORT__ を公開するサーバのポートに変更する。
+
+例えば 443 で公開するならば
+
+```
+     - "443:8443"
+```
+
+証明書は penfe.conf.json で定義する。
+
+## penfe.conf.json
 
 ```
 {
@@ -33,9 +77,9 @@ vi penfe/etc/penfe.conf.json
 
     "server_cert": "/opt/penfe/etc/server.crt",
 
-## penmm
+上記、/opt/penfe/etc は固定。ファイル名だけコピーしたファイル名に置き換える。
 
-vi penmm/etc/penmm.conf.json
+## penmm.conf.json
 
 ```
 {
@@ -58,35 +102,33 @@ vi penmm/etc/penmm.conf.json
 }
 ```
 
-## server configuration
+- STARTTLSをサポートしているメールサーバにだけ対応している。
+- gmail.com は検証済み。
 
-vi penmm/etc/penmm.conf.json
-vi penfe/etc/penfe.conf.json
-
-## docker configuration
-
-cat docker-compose.yml
+下記、文字列を適切に置き換える。
 
 ```
-  penfe:
-    image: tanupoo/penfe:a1
-    hostname: penfe
-    restart: always
-    networks:
-      - pen-local
-    ports:
-      - "__PUBLIC_PORT__:8443"
-    volumes:
-      - ./penfe/log:/opt/penfe/log
-      - ./penfe/etc:/opt/penfe/etc
-    command: /opt/penfe/etc/penfe.sh
+__SMTP_WITH_TLS_SERVER__
+__SMTP_USER_NAME__
+__SMTP_USER_PASSWORD__
+__MAIL_FROM__
+__PUBLIB_SERVER_NAME__
 ```
 
-__PUBLIC_PORT__ を公開するサーバのポートに変更する。
+__PUBLIB_SERVER_NAME__: 公開するサーバのホスト部
+    全体では、https://www.example.com:8433 などどする。
 
-例えば
+必要であれば、下記を変更する。
 
 ```
-     - "443:8443"
+mail_subject
+mail_reference
 ```
+
+GMAILの場合は、
+
+__SMTP_WITH_TLS_SERVER__: smtp.gmail.com
+__SMTP_USER_NAME__: gmailのアカウント名
+__SMTP_USER_PASSWORD__: gmailのパスワード
+__MAIL_FROM__: 通知メールのメールFromに入るメールアドレス
 
