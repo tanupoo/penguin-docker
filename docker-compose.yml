@@ -29,7 +29,7 @@ services:
       ME_CONFIG_MONGODB_SERVER: "penmongo"
 
   pendb:
-    image: tanupoo/pendb:a6
+    image: tanupoo/pendb:a7
     hostname: pendb
     restart: always
     networks:
@@ -42,7 +42,7 @@ services:
     command: /opt/pendb/etc/pendb.sh
 
   penmm:
-    image: tanupoo/penmm:a4
+    image: tanupoo/penmm:a5
     hostname: penmm
     restart: always
     networks:
@@ -55,7 +55,7 @@ services:
     command: /opt/penmm/etc/penmm.sh
 
   penfe:
-    image: tanupoo/penfe:a1
+    image: tanupoo/penfe:a2
     hostname: penfe
     restart: always
     networks:
