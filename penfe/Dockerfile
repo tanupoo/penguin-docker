@@ -1,0 +1,9 @@
+FROM python:3.9.5-alpine3.12
+RUN apk add git gcc musl-dev linux-headers
+
+RUN mkdir /opt/penfe && \
+    cd /opt/penfe && \
+    git clone --recursive https://github.com/tanupoo/proto-patient-entry bin
+RUN cd /opt/penfe/bin && \
+    pip install -r fe-reqs.txt
+
