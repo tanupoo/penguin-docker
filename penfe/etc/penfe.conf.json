@@ -8,7 +8,7 @@
     "db_api_url": "http://pendb:8082",
     "mm_api_url": "http://penmm:8083",
     "server_address": "",
-    "server_port": __PUBLIC_PORT__,
+    "server_port": "__PUBLIC_PORT__",
     "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
     "status_report_interval": 600
 }
