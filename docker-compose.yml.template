@@ -21,6 +21,8 @@ services:
     image: mongo-express:latest
     hostname: mongo-express
     restart: always
+    depends_on:
+      - "mongodb"
     networks:
       - pen-local
     ports:
@@ -32,6 +34,8 @@ services:
     image: tanupoo/pendb:a7
     hostname: pendb
     restart: always
+    depends_on:
+      - "mongodb"
     networks:
       - pen-local
     expose:
@@ -57,6 +61,9 @@ services:
   penfe:
     image: tanupoo/penfe:a2
     hostname: penfe
+    depends_on:
+      - "pendb"
+      - "penmm"
     restart: always
     networks:
       - pen-local
