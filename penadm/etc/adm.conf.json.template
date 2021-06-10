@@ -1,0 +1,19 @@
+{
+    "log_file": "/opt/penadm/log/penmm.log",
+    "log_stdout": true,
+    "enable_debug": true,
+    "tz": "Asia/Tokyo",
+    "db_api_url": "http://pendb:8082",
+    "mm_api_url": "http://penmm:8083",
+    "fe_api_url": "http://penfe:8084",
+    "server_address": "",
+    "server_port": "__PUBLIC_PORT__",
+    "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
+    "allow_ip_addrs": [
+        "__IP_ADDRESS_OF_HEALTH_CENTER__",
+        "127.0.0.1",
+        "::1"
+            ],
+    "lab_copy_interval": 86400
+}
+
