@@ -7,7 +7,7 @@
     "mm_api_url": "http://penmm:8083",
     "fe_api_url": "http://penfe:8084",
     "server_address": "",
-    "server_port": "__PUBLIC_PORT__",
+    "server_port": "8444",
     "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
     "allow_ip_addrs": [
         "__IP_ADDRESS_OF_HEALTH_CENTER__",
