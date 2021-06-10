@@ -10,6 +10,7 @@ cp docker-compose.yml.template docker-compose.yml
 cp pendb/etc/pendb.conf.json.template pendb/etc/pendb.conf.json
 cp penmm/etc/penmm.conf.json.template penmm/etc/penmm.conf.json
 cp penfe/etc/penfe.conf.json.template penfe/etc/penfe.conf.json
+cp penadm/etc/penadm.conf.json.template penadm/etc/penadm.conf.json
 ```
 
 特に下記3つのファイルを環境に合わせて編集する。
@@ -17,6 +18,7 @@ cp penfe/etc/penfe.conf.json.template penfe/etc/penfe.conf.json
 ```
 penmm.conf.json
 penfe.conf.json
+penadm.conf.json
 docker-compose.yml
 ```
 
@@ -71,11 +73,13 @@ __PUBLIC_PORT__ を公開するサーバのポートに変更する。
 証明書と秘密鍵をPEM形式で保存したファイルを penfe/etc/ にコピーする。
 証明書ファイルを server.crt とすると、
 
+```
 cp server.crt penfe/etc/
 
 vi penfe/etc/penfe.conf.json
 
     "server_cert": "/opt/penfe/etc/server.crt",
+```
 
 上記、/opt/penfe/etc は固定。ファイル名だけコピーしたファイル名に置き換える。
 
@@ -131,4 +135,49 @@ __SMTP_WITH_TLS_SERVER__: smtp.gmail.com
 __SMTP_USER_NAME__: gmailのアカウント名
 __SMTP_USER_PASSWORD__: gmailのパスワード
 __MAIL_FROM__: 通知メールのメールFromに入るメールアドレス
+
+## penadm.conf.json
+
+```
+{
+    "log_file": "/opt/penadm/log/penadm.log",
+    "log_stdout": true,
+    "enable_debug": true,
+    "tz": "Asia/Tokyo",
+    "db_api_url": "http://pendb:8082",
+    "mm_api_url": "http://penmm:8083",
+    "fe_api_url": "http://penfe:8084",
+    "server_address": "",
+    "server_port": "8444",
+    "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
+    "allow_ip_addrs": [
+        "__IP_ADDRESS_OF_HEALTH_CENTER__",
+        "127.0.0.1",
+        "::1"
+            ],
+    "lab_copy_interval": 86400
+}
+```
+
+証明書と秘密鍵をPEM形式で保存したファイルを penadm/etc/ にコピーする。
+証明書ファイルを server.crt とすると、
+
+```
+cp server.crt penadm/etc/
+
+vi penadm/etc/penadm.conf.json
+
+    "server_cert": "/opt/penadm/etc/server.crt",
+```
+
+上記、/opt/penadm/etc は固定。ファイル名だけコピーしたファイル名に置き換える。
+
+allow_ip_addrsは、接続を許可するIPアドレスを列挙する。
+空の場合は、チェックしない。
+
+```
+    "allow_ip_addrs": [ ],
+```
+
+ここを空にして、iptablesで絞ることを推奨する。
 
