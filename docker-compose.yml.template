@@ -34,8 +34,6 @@ services:
     image: tanupoo/pendb:a8
     hostname: pendb
     restart: always
-    depends_on:
-      - "mongodb"
     networks:
       - pen-local
     expose:
@@ -61,9 +59,6 @@ services:
   penfe:
     image: tanupoo/penfe:a3
     hostname: penfe
-    depends_on:
-      - "pendb"
-      - "penmm"
     restart: always
     networks:
       - pen-local
@@ -77,10 +72,6 @@ services:
   penadm:
     image: tanupoo/penadm:a2
     hostname: penadm
-    depends_on:
-      - "pendb"
-      - "penmm"
-      - "penfe"
     restart: always
     networks:
       - pen-local
