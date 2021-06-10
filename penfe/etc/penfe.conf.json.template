@@ -10,6 +10,6 @@
     "server_address": "",
     "server_port": "__PUBLIC_PORT__",
     "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
-    "status_report_interval": 600
+    "status_report_interval": 3600
 }
 
