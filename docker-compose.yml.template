@@ -31,7 +31,7 @@ services:
       ME_CONFIG_MONGODB_SERVER: "penmongo"
 
   pendb:
-    image: tanupoo/pendb:a7
+    image: tanupoo/pendb:a8
     hostname: pendb
     restart: always
     depends_on:
@@ -46,7 +46,7 @@ services:
     command: /opt/pendb/etc/pendb.sh
 
   penmm:
-    image: tanupoo/penmm:a5
+    image: tanupoo/penmm:a6
     hostname: penmm
     restart: always
     networks:
@@ -59,7 +59,7 @@ services:
     command: /opt/penmm/etc/penmm.sh
 
   penfe:
-    image: tanupoo/penfe:a2
+    image: tanupoo/penfe:a3
     hostname: penfe
     depends_on:
       - "pendb"
@@ -75,7 +75,7 @@ services:
     command: /opt/penfe/etc/penfe.sh
 
   penadm:
-    image: tanupoo/penadm:a1
+    image: tanupoo/penadm:a2
     hostname: penadm
     depends_on:
       - "pendb"
