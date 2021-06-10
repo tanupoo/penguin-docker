@@ -1,5 +1,5 @@
 {
-    "log_file": "/opt/penadm/log/penmm.log",
+    "log_file": "/opt/penadm/log/penadm.log",
     "log_stdout": true,
     "enable_debug": true,
     "tz": "Asia/Tokyo",
