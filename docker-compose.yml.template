@@ -74,3 +74,20 @@ services:
       - ./penfe/etc:/opt/penfe/etc
     command: /opt/penfe/etc/penfe.sh
 
+  penadm:
+    image: tanupoo/penadm:a1
+    hostname: penadm
+    depends_on:
+      - "pendb"
+      - "penmm"
+      - "penfe"
+    restart: always
+    networks:
+      - pen-local
+    ports:
+      - "8444:8444"
+    volumes:
+      - ./penadm/log:/opt/penadm/log
+      - ./penadm/etc:/opt/penadm/etc
+    command: /opt/penadm/etc/penadm.sh
+
