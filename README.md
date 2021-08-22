@@ -95,7 +95,7 @@ vi penfe/etc/penfe.conf.json
     "mail_bcc": "",
     "mail_subject": "新型コロナの調査について",
     "mail_reference": "連絡先: ○△□",
-    "public_api_url": "https://__PUBLIB_SERVER_NAME__",
+    "public_fe_url": "https://__PUBLIB_FE_NAME__",
     "server_cert": "",
     "server_address": "penmm",
     "server_port": 8083,

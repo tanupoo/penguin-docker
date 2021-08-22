@@ -7,7 +7,7 @@
     "tz": "Asia/Tokyo",
     "db_api_url": "http://pendb:8082",
     "mm_api_url": "http://penmm:8083",
-    "fe_api_url": "https://__PUBLIB_SERVER_NAME__",
+    "public_fe_url": "https://__PUBLIB_FE_NAME__",
     "server_address": "",
     "server_port": 8442,
     "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",

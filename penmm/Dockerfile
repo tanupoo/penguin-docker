@@ -5,7 +5,7 @@ RUN apk add zlib-dev jpeg-dev
 ARG __NC=X
 RUN mkdir /opt/penmm && \
     cd /opt/penmm && \
-    git clone --recursive https://github.com/tanupoo/proto-patient-entry bin
+    git clone --recursive https://github.com/tanupoo/penguin bin
 RUN cd /opt/penmm/bin && \
     pip install -r mm-reqs.txt
 

@@ -5,7 +5,7 @@ RUN apk add linux-headers
 ARG __NC=X
 RUN mkdir /opt/penen && \
     cd /opt/penen && \
-    git clone --recursive https://github.com/tanupoo/proto-patient-entry bin
+    git clone --recursive https://github.com/tanupoo/penguin bin
 RUN cd /opt/penen/bin && \
     pip install -r en-reqs.txt
 

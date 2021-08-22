@@ -5,7 +5,7 @@ RUN apk add linux-headers
 ARG __NC=X
 RUN mkdir /opt/penfe && \
     cd /opt/penfe && \
-    git clone --recursive https://github.com/tanupoo/proto-patient-entry bin
+    git clone --recursive https://github.com/tanupoo/penguin bin
 RUN cd /opt/penfe/bin && \
     pip install -r fe-reqs.txt
 

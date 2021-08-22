@@ -5,7 +5,7 @@ RUN apk add git gcc musl-dev
 ARG __NC=X
 RUN mkdir /opt/penadm && \
     cd /opt/penadm && \
-    git clone --recursive https://github.com/tanupoo/proto-patient-entry bin
+    git clone --recursive https://github.com/tanupoo/penguin bin
 RUN cd /opt/penadm/bin && \
     pip install -r adm-reqs.txt
 
