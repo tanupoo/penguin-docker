@@ -2,12 +2,12 @@
 
 ALL="pendb penmm penfe penen penadm"
 
-name=$1
-if [ ! "$name" ] ; then
-    echo "Usage: build.sh (name)"
+usage()
+{
+    echo "Usage: build.sh [-p] (name)"
     echo "    name: ${ALL}"
     exit -1
-fi
+}
 
 build_image()
 {
@@ -22,6 +22,7 @@ build_image()
 
 push_image()
 {
+    name=$1
     tag=`grep ${name} latest-versions.txt | cut -d: -f2`
     pubname=tanupoo/${name}:${tag}
     echo "==== Push ${pubname} ===="
@@ -29,4 +30,24 @@ push_image()
     docker push ${pubname}
 }
 
-push_image ${name}
+#
+# main
+#
+if [ "$1" = "-p" ] ; then
+    mode="push_image"
+    shift
+    targets=$*
+else
+    mode="build_image"
+    targets=$*
+fi
+
+if [ -z "$targets" ] ; then
+    usage
+fi
+
+for t in ${targets}
+do
+    $mode $t
+done
+
