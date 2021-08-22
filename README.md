@@ -1,25 +1,26 @@
-proto-pen-docker
-================
+penguin-docker
+==============
 
 ## installation
 
 ```
-git clone https://github.com/tanupoo/proto-pen-docker
-cd proto-pen-docker
-cp docker-compose.yml.template docker-compose.yml
-cp pendb/etc/pendb.conf.json.template pendb/etc/pendb.conf.json
-cp penmm/etc/penmm.conf.json.template penmm/etc/penmm.conf.json
-cp penfe/etc/penfe.conf.json.template penfe/etc/penfe.conf.json
-cp penadm/etc/penadm.conf.json.template penadm/etc/penadm.conf.json
+git clone https://github.com/tanupoo/penguin-docker
+cd penguin-docker
+cp -i docker-compose.yml.template docker-compose.yml
+cp -i pendb/etc/pendb.conf.json.template pendb/etc/pendb.conf.json
+cp -i penmm/etc/penmm.conf.json.template penmm/etc/penmm.conf.json
+cp -i penfe/etc/penfe.conf.json.template penfe/etc/penfe.conf.json
+cp -i penadm/etc/penadm.conf.json.template penadm/etc/penadm.conf.json
 ```
 
 特に下記3つのファイルを環境に合わせて編集する。
 
 ```
+docker-compose.yml
+penen.conf.json
 penmm.conf.json
 penfe.conf.json
 penadm.conf.json
-docker-compose.yml
 ```
 
 ## docker-compose.yml
@@ -51,37 +52,6 @@ __PUBLIC_PORT__ を公開するサーバのポートに変更する。
 ```
 
 証明書は penfe.conf.json で定義する。
-
-## penfe.conf.json
-
-```
-{
-    "origins": [ ],
-    "log_file": "/opt/penfe/log/penfe.log",
-    "log_stdout": true,
-    "enable_debug": true,
-    "tz": "Asia/Tokyo",
-    "db_api_url": "http://pendb:8082",
-    "mm_api_url": "http://penmm:8083",
-    "server_address": "",
-    "server_port": "__PUBLIC_PORT__",
-    "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
-    "status_report_interval": 600
-}
-```
-
-証明書と秘密鍵をPEM形式で保存したファイルを penfe/etc/ にコピーする。
-証明書ファイルを server.crt とすると、
-
-```
-cp server.crt penfe/etc/
-
-vi penfe/etc/penfe.conf.json
-
-    "server_cert": "/opt/penfe/etc/server.crt",
-```
-
-上記、/opt/penfe/etc は固定。ファイル名だけコピーしたファイル名に置き換える。
 
 ## penmm.conf.json
 
@@ -136,6 +106,38 @@ __SMTP_USER_NAME__: gmailのアカウント名
 __SMTP_USER_PASSWORD__: gmailのパスワード
 __MAIL_FROM__: 通知メールのメールFromに入るメールアドレス
 
+## penfe.conf.json
+
+```
+{
+    "origins": [ ],
+    "log_file": "/opt/penfe/log/penfe.log",
+    "log_stdout": true,
+    "enable_debug": true,
+    "tz": "Asia/Tokyo",
+    "db_api_url": "http://pendb:8082",
+    "mm_api_url": "http://penmm:8083",
+    "server_address": "",
+    "server_port": "__PUBLIC_PORT__",
+    "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
+    "status_report_interval": 600,
+    "google_apikey": "2e0390eb024a52963db7b95e84a9c2b12c00405"
+}
+```
+
+証明書と秘密鍵をPEM形式で保存したファイルを penfe/etc/ にコピーする。
+証明書ファイルを server.crt とすると、
+
+```
+cp server.crt penfe/etc/
+
+vi penfe/etc/penfe.conf.json
+
+    "server_cert": "/opt/penfe/etc/server.crt",
+```
+
+上記、/opt/penfe/etc は固定。ファイル名だけコピーしたファイル名に置き換える。
+
 ## penadm.conf.json
 
 ```
@@ -180,4 +182,30 @@ allow_ip_addrsは、接続を許可するIPアドレスを列挙する。
 ```
 
 ここを空にして、iptablesで絞ることを推奨する。
+
+## 起動と終了
+
+[docker-compose](https://docs.docker.jp/compose/reference/overview.html)で操作する。
+
+起動する。
+
+```
+docker-compose up -d
+```
+
+終了する。
+
+```
+docker-compose down
+```
+
+ログを確認する。
+
+```
+docker-compose logs -f
+```
+
+## mongo-express
+
+ssh -L 8091:127.0.0.1:8091 server
 
