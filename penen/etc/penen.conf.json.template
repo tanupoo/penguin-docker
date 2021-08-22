@@ -1,16 +1,15 @@
 {
     "origins": [
             ],
-    "log_file": "/opt/penfe/log/penfe.log",
+    "log_file": "/opt/penen/log/penen.log",
     "log_stdout": true,
     "enable_debug": true,
     "tz": "Asia/Tokyo",
     "db_api_url": "http://pendb:8082",
     "mm_api_url": "http://penmm:8083",
+    "fe_api_url": "https://__PUBLIB_SERVER_NAME__",
     "server_address": "",
-    "server_port": "8443",
+    "server_port": 8442,
     "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
-    "status_report_interval": 3600,
-    "google_apikey": "__SET_YOUR_GOOGLE_MAPS_APIKEY__"
+    "status_report_interval": 600
 }
-

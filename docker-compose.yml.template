@@ -56,6 +56,19 @@ services:
       - ./penmm/etc:/opt/penmm/etc
     command: /opt/penmm/etc/penmm.sh
 
+  penen:
+    image: tanupoo/penen:a1
+    hostname: penen
+    restart: always
+    networks:
+      - pen-local
+    ports:
+      - "8442:8442"
+    volumes:
+      - ./penen/log:/opt/penen/log
+      - ./penen/etc:/opt/penen/etc
+    command: /opt/penen/etc/penen.sh
+
   penfe:
     image: tanupoo/penfe:a3
     hostname: penfe
