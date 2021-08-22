@@ -34,6 +34,8 @@ services:
     image: tanupoo/pendb:a10
     hostname: pendb
     restart: always
+    depends_on:
+      - "mongodb"
     networks:
       - pen-local
     expose:
