@@ -1,5 +1,5 @@
 pendb:a10
-penmm:a9
-penen:a3
-penfe:a6
+penmm:a10
+penen:a4
+penfe:a7
 penadm:a4
