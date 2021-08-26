@@ -11,6 +11,7 @@
     "server_port": "8443",
     "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
     "status_report_interval": 3600,
-    "google_apikey": "__SET_YOUR_GOOGLE_MAPS_APIKEY__"
+    "google_apikey": "__SET_YOUR_GOOGLE_MAPS_APIKEY__",
+    "ui_step2_path": "/opt/penfe/ui"
 }
 
