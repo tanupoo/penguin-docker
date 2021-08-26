@@ -14,10 +14,14 @@ build_image()
     (
         name=$1
         echo "==== Build ${name} ===="
+        if [ ! -d "${name}" ] ; then
+            echo "ERROR: $name doesn't exist."
+            return
+        fi
         cd ${name} && \
         if [ "`docker images ${name}:build -q`" ] ; then
             docker rmi ${name}:build ;
-        fi
+        fi && \
         docker build -t ${name}:build --build-arg __NC=`date +%Y%m%d%H%M%S` .
     )
 }
