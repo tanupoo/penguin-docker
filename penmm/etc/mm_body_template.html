@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <style>
+      div {{ margin: 0 0 10px 2px }}
+      .focus {{ margin: 5px 0 15px 15px; font-size: large; font-weight: bold; }}
+      .preamble {{ margin: 0 auto 10px 5px; font-size: x-small; }}
+      #qrcode {{ display: block; margin-left:auto; margin-right:auto }}
+      hr {{ width: 80%; margin: 10px auto 10px 0 }}
+    </style>
+  </head>
+  <body>
+
+    <div class="preamble">
+        このメールは「{config.mail_sysname}」の
+        ご利用を開始した方にお送りしております。
+    </div>
+
+    <div class="preamble">
+        心当たりがない場合は、お手数ですが破棄して頂けますと幸いです。
+    </div>
+
+    <hr>
+
+    <div>
+        行動履歴を入力するためには下記のリンクをクリックして下さい。
+    </div>
+
+    <div class="focus">
+        <a href="{url}">行動履歴入力へのリンク</a>
+    </div>
+
+    <div>
+        クリックすると認証画面が表示されます。
+    <div>
+
+    </div>
+        初期登録で入力したメールアドレスと、
+        下記の認証コードを入力して下さい。
+    </div>
+
+    <div class="focus">
+        {request.authcode}
+    </div>
+
+    <div>
+        その後、行動履歴を入力する画面に進みます。
+    </div>
+
+    <div>
+        添付のQRコードは上記アドレスと同じものです。
+        必要であれば利用して下さい。
+    </div>
+
+    <div>
+        下記3つの「ひらがなコード」は看護師に尋ねられた場合にお伝え下さい。
+    </div>
+
+    <div class="focus">
+        {request.c3w_words}
+    </div>
+
+    <div>
+        お手数をおかけいたしますが、
+        ご協力の程、よろしくお願いいたします。
+    </div>
+
+    <div>
+        {config.mail_reference}
+    </div>
+
+    <div>
+        <img id="qrcode" src="data:image/png;base64,{qrcode_b64}" />
+    </div>
+
+  </body>
+</html>

@@ -65,6 +65,8 @@ __PUBLIC_PORT__ を公開するサーバのポートに変更する。
     "mail_bcc": "",
     "mail_subject": "新型コロナの調査について",
     "mail_reference": "連絡先: ○△□",
+    "mail_body_text_path": "/opt/penmm/etc/mm_body_template.txt",
+    "mail_body_html_path": "/opt/penmm/etc/mm_body_template.html",
     "public_fe_url": "https://__PUBLIB_FE_NAME__",
     "server_cert": "",
     "server_address": "penmm",
@@ -105,6 +107,13 @@ __SMTP_WITH_TLS_SERVER__: smtp.gmail.com
 __SMTP_USER_NAME__: gmailのアカウント名
 __SMTP_USER_PASSWORD__: gmailのパスワード
 __MAIL_FROM__: 通知メールのメールFromに入るメールアドレス
+
+メールのテキストを変更したければ、下記のファイルを編集する。
+
+```
+penmm/etc/mm_body_template.txt
+penmm/etc/mm_body_template.html
+```
 
 ## penfe.conf.json
 
