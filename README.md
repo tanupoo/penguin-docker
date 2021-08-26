@@ -13,12 +13,22 @@ cp -i penfe/etc/penfe.conf.json.template penfe/etc/penfe.conf.json
 cp -i penadm/etc/penadm.conf.json.template penadm/etc/penadm.conf.json
 ```
 
-特に下記3つのファイルを環境に合わせて編集する。
+最初に必要なファイルを作るスクリプトを実行する。
+
+```
+sh init.sh
+```
+
+スクリプトは難しいことはやっていない。
+単に、penguinのcloneと、uiへのシンボリックリンクを作る。
+
+次に、特に下記6つのファイルを環境に合わせて編集する。
 
 ```
 docker-compose.yml
-penen.conf.json
+pendb.conf.json
 penmm.conf.json
+penen.conf.json
 penfe.conf.json
 penadm.conf.json
 ```
