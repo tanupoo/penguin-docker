@@ -69,6 +69,7 @@ services:
     volumes:
       - ./penen/log:/opt/penen/log
       - ./penen/etc:/opt/penen/etc
+      - ./penen/ui:/opt/penen/ui
     command: /opt/penen/etc/penen.sh
 
   penfe:
@@ -82,6 +83,7 @@ services:
     volumes:
       - ./penfe/log:/opt/penfe/log
       - ./penfe/etc:/opt/penfe/etc
+      - ./penfe/ui:/opt/penfe/ui
     command: /opt/penfe/etc/penfe.sh
 
   penadm:
