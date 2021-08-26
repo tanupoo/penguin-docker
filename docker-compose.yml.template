@@ -46,7 +46,7 @@ services:
     command: /opt/pendb/etc/pendb.sh
 
   penmm:
-    image: tanupoo/penmm:a9
+    image: tanupoo/penmm:a10
     hostname: penmm
     restart: always
     networks:
@@ -59,7 +59,7 @@ services:
     command: /opt/penmm/etc/penmm.sh
 
   penen:
-    image: tanupoo/penen:a3
+    image: tanupoo/penen:a4
     hostname: penen
     restart: always
     networks:
@@ -73,7 +73,7 @@ services:
     command: /opt/penen/etc/penen.sh
 
   penfe:
-    image: tanupoo/penfe:a6
+    image: tanupoo/penfe:a7
     hostname: penfe
     restart: always
     networks:
