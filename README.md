@@ -46,14 +46,15 @@ penadm.conf.json
     networks:
       - pen-local
     ports:
-      - "__PEN_PUBLIC_PORT__:8443"
+      - "__PUBLIC_PORT__:8443"
     volumes:
       - ./penfe/log:/opt/penfe/log
       - ./penfe/etc:/opt/penfe/etc
     command: /opt/penfe/etc/penfe.sh
 ```
 
-penfeの__PEN_PUBLIC_PORT__を公開するサーバのポートに変更する。
+penen,penfe,penadmの__PUBLIC_PORT__を、それぞれ異なるポートに変更する。
+これはそれぞれのサーバを外部に公開するポートになる。
 
 例えば 443 で公開するならば
 

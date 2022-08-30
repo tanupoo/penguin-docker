@@ -65,7 +65,7 @@ services:
     networks:
       - pen-local
     ports:
-      - "8442:8442"
+      - "__PUBLIC_PORT__:8442"
     volumes:
       - ./penen/log:/opt/penen/log
       - ./penen/etc:/opt/penen/etc
@@ -79,7 +79,7 @@ services:
     networks:
       - pen-local
     ports:
-      - "__PEN_PUBLIC_PORT__:8443"
+      - "__PUBLIC_PORT__:8443"
     volumes:
       - ./penfe/log:/opt/penfe/log
       - ./penfe/etc:/opt/penfe/etc
@@ -93,7 +93,7 @@ services:
     networks:
       - pen-local
     ports:
-      - "8444:8444"
+      - "__PUBLIC_PORT__:8444"
     volumes:
       - ./penadm/log:/opt/penadm/log
       - ./penadm/etc:/opt/penadm/etc
