@@ -79,7 +79,7 @@ services:
     networks:
       - pen-local
     ports:
-      - "8443:8443"
+      - "__PEN_PUBLIC_PORT__:8443"
     volumes:
       - ./penfe/log:/opt/penfe/log
       - ./penfe/etc:/opt/penfe/etc
