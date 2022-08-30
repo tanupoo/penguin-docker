@@ -224,6 +224,23 @@ docker-compose down
 docker-compose logs -f
 ```
 
+個別にログを見る。
+
+例: penmmのログを見る。
+
+```
+docker-compose logs -f penmm
+```
+
+## 個別に再起動する。
+
+例: penmmを再起動する。
+
+```
+docker-compose restart penmm
+```
+
+
 ## mongo-express
 
 ssh -L 8091:127.0.0.1:8091 server
