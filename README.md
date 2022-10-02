@@ -1,6 +1,9 @@
 penguin-docker
 ==============
 
+docker-composeが必要になる。
+Debian系であれば`apt install docker-compose`などでインストールする。
+
 ## installation
 
 ```
@@ -62,9 +65,9 @@ penen,penfe,penadmの__PUBLIC_PORT__を、それぞれ異なるポートに変�
      - "443:8443"
 ```
 
-証明書は penfe.conf.json で定義する。
-
 ## penmm.conf.json
+
+患者UIへのアクセスの案内メールを送信するサーバの設定。
 
 ```
 {
@@ -75,7 +78,7 @@ penen,penfe,penadmの__PUBLIC_PORT__を、それぞれ異なるポートに変�
     "mail_from": "__MAIL_FROM__",
     "mail_bcc": "",
     "mail_subject": "新型コロナの調査について",
-    "mail_reference": "連絡先: ○△□",
+    "mail_reference": "__CALL_ADDR__",
     "mail_body_text_path": "/opt/penmm/etc/mm_body_template.txt",
     "mail_body_html_path": "/opt/penmm/etc/mm_body_template.html",
     "public_fe_url": "https://__PUBLIB_FE_NAME__",
@@ -99,6 +102,7 @@ __SMTP_WITH_TLS_SERVER__
 __SMTP_USER_NAME__
 __SMTP_USER_PASSWORD__
 __MAIL_FROM__
+__CALL_ADDR__
 __PUBLIB_SERVER_NAME__
 ```
 
@@ -127,6 +131,8 @@ penmm/etc/mm_body_template.html
 ```
 
 ## penfe.conf.json
+
+患者UIサーバの設定。
 
 ```
 {
@@ -159,6 +165,8 @@ vi penfe/etc/penfe.conf.json
 上記、/opt/penfe/etc は固定。ファイル名だけコピーしたファイル名に置き換える。
 
 ## penadm.conf.json
+
+管理I/Fの設定。
 
 ```
 {
