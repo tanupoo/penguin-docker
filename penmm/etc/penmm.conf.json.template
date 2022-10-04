@@ -10,7 +10,7 @@
     "mail_reference": "連絡先: マルバツサンカク",
     "mail_body_text_path": "/opt/penmm/etc/mm_body_template.txt",
     "mail_body_html_path": "/opt/penmm/etc/mm_body_template.html",
-    "public_fe_url": "https://__PUBLIB_FE_NAME__",
+    "public_fe_url": "__PUBLIC_FE_URL__",
     "server_cert": "",
     "server_address": "penmm",
     "server_port": 8083,

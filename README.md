@@ -11,6 +11,7 @@ git clone https://github.com/tanupoo/penguin-docker
 cd penguin-docker
 cp -i docker-compose.yml.template docker-compose.yml
 cp -i pendb/etc/pendb.conf.json.template pendb/etc/pendb.conf.json
+cp -i penen/etc/penen.conf.json.template penen/etc/penen.conf.json
 cp -i penmm/etc/penmm.conf.json.template penmm/etc/penmm.conf.json
 cp -i penfe/etc/penfe.conf.json.template penfe/etc/penfe.conf.json
 cp -i penadm/etc/penadm.conf.json.template penadm/etc/penadm.conf.json
@@ -30,8 +31,8 @@ sh init.sh
 ```
 docker-compose.yml
 pendb.conf.json
-penmm.conf.json
 penen.conf.json
+penmm.conf.json
 penfe.conf.json
 penadm.conf.json
 ```
@@ -65,6 +66,45 @@ penen,penfe,penadmの__PUBLIC_PORT__を、それぞれ異なるポートに変�
      - "443:8443"
 ```
 
+## penen.conf.json
+
+患者UIサーバへ誘導するためのエントリサーバの設定。
+
+```
+{
+    "origins": [
+            ],
+    "log_file": "/opt/penen/log/penen.log",
+    "log_stdout": true,
+    "enable_debug": true,
+    "tz": "Asia/Tokyo",
+    "db_api_url": "http://pendb:8082",
+    "mm_api_url": "http://penmm:8083",
+    "public_fe_url": "__PUBLIB_FE_URL__",
+    "server_address": "",
+    "server_port": 8442,
+    "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
+    "status_report_interval": 600,
+    "ui_step1_path": "/opt/penen/ui"
+}
+```
+
+デバッグなどの目的で証明書を使わない場合は*server_cert*を空文字にする。
+
+証明書と秘密鍵をPEM形式で保存したファイルを penen/etc/ にコピーする。
+ファイルへのパスを*server_cert*にセットする。
+証明書ファイルを server.crt とすると、
+
+```
+cp server.crt penen/etc/
+
+vi penen/etc/penen.conf.json
+
+    "server_cert": "/opt/penen/etc/server.crt",
+```
+
+上記、/opt/penen/etc は固定。ファイル名だけコピーしたファイル名に置き換える。
+
 ## penmm.conf.json
 
 患者UIへのアクセスの案内メールを送信するサーバの設定。
@@ -81,7 +121,7 @@ penen,penfe,penadmの__PUBLIC_PORT__を、それぞれ異なるポートに変�
     "mail_reference": "__CALL_ADDR__",
     "mail_body_text_path": "/opt/penmm/etc/mm_body_template.txt",
     "mail_body_html_path": "/opt/penmm/etc/mm_body_template.html",
-    "public_fe_url": "https://__PUBLIB_FE_NAME__",
+    "public_fe_url": "__PUBLIC_FE_URL__",
     "server_cert": "",
     "server_address": "penmm",
     "server_port": 8083,
@@ -103,25 +143,22 @@ __SMTP_USER_NAME__
 __SMTP_USER_PASSWORD__
 __MAIL_FROM__
 __CALL_ADDR__
-__PUBLIB_SERVER_NAME__
+__PUBLIC_FE_URL__
 ```
 
-__PUBLIB_SERVER_NAME__: 公開するサーバのホスト部
-    全体では、https://www.example.com:8433 などどする。
+*public_fe_url*: 公開するサーバのURLを*__PUBLIC_FE_URL__*にセットする。
+例えば、*https://www.example.com:8433*などどする。
 
-必要であれば、下記を変更する。
-
-```
-mail_subject
-mail_reference
-```
+必要であれば、*mail_subject*, *mail_reference*を変更する。
 
 GMAILの場合は、
 
+```
 __SMTP_WITH_TLS_SERVER__: smtp.gmail.com
 __SMTP_USER_NAME__: gmailのアカウント名
 __SMTP_USER_PASSWORD__: gmailのパスワード
 __MAIL_FROM__: 通知メールのメールFromに入るメールアドレス
+```
 
 メールのテキストを変更したければ、下記のファイルを編集する。
 
@@ -147,11 +184,14 @@ penmm/etc/mm_body_template.html
     "server_port": "__PUBLIC_PORT__",
     "server_cert": "__STRONGLY_RECOMMEND_TO_SET_YOUR_CERT__",
     "status_report_interval": 600,
-    "google_apikey": "2e0390eb024a52963db7b95e84a9c2b12c00405"
+    "google_apikey": "__SET_YOUR_GOOGLE_MAPS_APIKEY__"
 }
 ```
 
+デバッグなどの目的で証明書を使わない場合は*server_cert*を空文字にする。
+
 証明書と秘密鍵をPEM形式で保存したファイルを penfe/etc/ にコピーする。
+ファイルへのパスを*server_cert*にセットする。
 証明書ファイルを server.crt とすると、
 
 ```
