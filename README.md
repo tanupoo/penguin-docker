@@ -229,7 +229,10 @@ vi penfe/etc/penfe.conf.json
 }
 ```
 
+デバッグなどの目的で証明書を使わない場合は*server_cert*を空文字にする。
+
 証明書と秘密鍵をPEM形式で保存したファイルを penadm/etc/ にコピーする。
+ファイルへのパスを*server_cert*にセットする。
 証明書ファイルを server.crt とすると、
 
 ```
