@@ -1,10 +1,31 @@
 penguin-docker
 ==============
 
-docker-composeが必要になる。
-Debian系であれば`apt install docker-compose`などでインストールする。
+症例候補の初期入力支援システムの[バックエンド](https://github.com/tanupoo/penguin)と[フロントエンド](https://github.com/tanupoo/penguin-ui)のDockerたち。
 
-## installation
+## 動作の流れ
+
+- 患者にエントリサーバ*penen*のURLをQRやメールなどで知らせる。
+    + 患者が最初に1回だけアクセスする。
+        * 例. *https://penguin.m-crisis.wide.ad.jp:8442*
+    + 患者のメールアドレスを入力してもらう。
+    + *penmm*からメールが送られる。
+- メールに含まれる情報。
+    + 患者の情報を入力するためのエンドポイント(*URL-B*)。
+    + 3つの数字
+    + 3つの単語
+    + *URL-B*のQRコード
+- 以降、患者はURL-Bにアクセスして情報を入力する。
+    + *URL-B*は*penfe*で処理される。
+- *penadm*からデータをダウンロードすると*URL-B*が無効になる。
+- 詳細は、https://github.com/tanupoo/penguin/blob/main/IMPLEMENTATION.md を参照のこと。
+
+## 準備
+
+- docker-composeが必要になる。
+- Debian系であれば`apt install docker-compose`などでインストールする。
+
+## インストール
 
 ```
 git clone https://github.com/tanupoo/penguin-docker
@@ -68,7 +89,7 @@ penen,penfe,penadmの__PUBLIC_PORT__を、それぞれ異なるポートに変�
 
 ## penen.conf.json
 
-患者UIサーバへ誘導するためのエントリサーバの設定。
+- 患者UIサーバへ誘導するためのエントリサーバの設定。
 
 ```
 {
