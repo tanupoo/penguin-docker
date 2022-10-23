@@ -18,6 +18,7 @@ penguin-docker
 - 以降、患者はURL-Bにアクセスして情報を入力する。
     + *URL-B*は*penfe*で処理される。
 - *penadm*からデータをダウンロードすると*URL-B*が無効になる。
+        * 例. https://penguin.m-crisis.wide.ad.jp:8444/dl/%E3%81%82%E3%81%8B-%E3%81%8D%E3%81%84%E3%82%8D-%E3%81%82%E3%81%8A%0A
 - 詳細は、https://github.com/tanupoo/penguin/blob/main/IMPLEMENTATION.md を参照のこと。
 
 ## 準備
