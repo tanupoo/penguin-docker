@@ -3,6 +3,13 @@ penguin-docker
 
 症例候補の初期入力支援システムの[バックエンド](https://github.com/tanupoo/penguin)と[フロントエンド](https://github.com/tanupoo/penguin-ui)のDockerたち。
 
+## NOTE
+
+**重要**
+今後は*https://github.com/ffhs-dev*で開発を進めることになりました。
+FFHSはプライベートリポジトリなのでコードを見ることはできません。
+ですので、このリポジトリは参照用として残しておきます。
+
 ## 動作の流れ
 
 - 患者にエントリサーバ*penen*のURLをQRやメールなどで知らせる。
